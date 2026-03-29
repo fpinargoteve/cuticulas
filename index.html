@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cutículas Perfectas — Academia Diana Ortiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off: #fafaf9;
+    --light: #f2f1ef;
+    --mid: #e4e2de;
+    --muted: #9a9590;
+    --ink: #1a1916;
+    --accent: #b5a99a;
+    --gap: clamp(48px, 8vw, 96px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--mid);
+    padding: 18px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .nav-cta {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink);
+    border: 1px solid var(--ink); padding: 9px 22px;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--mid);
+    padding: 6px 14px; margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 300; line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 15px; font-weight: 300; color: #555550;
+    line-height: 1.7; max-width: 420px; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--white);
+    padding: 14px 32px; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: opacity 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-ghost {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    letter-spacing: 0.05em; border-bottom: 1px solid var(--mid);
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+  .hero-img {
+    position: relative;
+    aspect-ratio: 3/4; overflow: hidden;
+  }
+  .hero-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(15%);
+  }
+  .hero-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(250,250,249,0.3));
+    z-index: 1;
+  }
+  .hero-price-badge {
+    position: absolute; bottom: 24px; left: 24px; z-index: 2;
+    background: var(--white); padding: 16px 20px;
+    border: 1px solid var(--mid);
+  }
+  .hero-price-badge .old { font-size: 11px; color: var(--muted); text-decoration: line-through; }
+  .hero-price-badge .new { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; }
+  .hero-price-badge .note { font-size: 10px; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* PILLARS */
+  .pillars {
+    background: var(--off);
+    border-top: 1px solid var(--mid); border-bottom: 1px solid var(--mid);
+    padding: 60px 40px;
+  }
+  .pillars-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+  }
+  .pillar { padding: 0; }
+  .pillar-mark {
+    width: 24px; height: 1px; background: var(--accent);
+    margin-bottom: 20px;
+  }
+  .pillar h3 { font-size: 13px; font-weight: 500; margin-bottom: 8px; letter-spacing: 0.02em; }
+  .pillar p { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* SECTION BASE */
+  section { padding: var(--gap) 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--mid);
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px); font-weight: 300;
+    line-height: 1.15; letter-spacing: -0.01em;
+  }
+  h2 em { font-style: italic; }
+
+  /* STATS */
+  .stats { background: var(--ink); padding: 60px 40px; }
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: #333;
+  }
+  .stat {
+    background: var(--ink); padding: 48px 40px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300; color: var(--white);
+    line-height: 1; margin-bottom: 12px;
+  }
+  .stat-label { font-size: 12px; color: #888; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* INSTRUCTOR */
+  .instructor { background: var(--off); }
+  .instructor-grid {
+    display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: center;
+  }
+  .instructor-img { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+  .instructor-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
+  .instructor-content { padding: 40px 0; }
+  .instructor-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300; margin: 16px 0;
+  }
+  .instructor-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .tag {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1px solid var(--mid); padding: 5px 12px; color: var(--muted);
+  }
+  .instructor-bio { font-size: 14px; font-weight: 300; color: #555550; line-height: 1.75; margin-bottom: 24px; }
+  .instructor-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-style: italic; font-weight: 300;
+    color: var(--muted); border-left: 2px solid var(--mid);
+    padding-left: 20px; line-height: 1.5;
+  }
+  .instructor-points { list-style: none; margin-top: 24px; }
+  .instructor-points li {
+    font-size: 13px; font-weight: 300; color: #555550;
+    padding: 10px 0; border-bottom: 1px solid var(--mid);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .instructor-points li::before { content: '—'; color: var(--accent); }
+
+  /* STEPS */
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    margin-top: 48px;
+  }
+  .step { background: var(--off); overflow: hidden; }
+  .step-img { aspect-ratio: 3/4; overflow: hidden; }
+  .step-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: transform 0.5s; }
+  .step:hover .step-img img { transform: scale(1.03); }
+  .step-body { padding: 24px; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: var(--mid);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .step-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+  .step-desc { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.5; }
+
+  /* CURRICULUM */
+  .curriculum-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    margin-bottom: 48px; align-items: end;
+  }
+  .modules { border-top: 1px solid var(--mid); }
+  .module {
+    border-bottom: 1px solid var(--mid);
+    overflow: hidden;
+  }
+  .module-header {
+    padding: 22px 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: color 0.2s;
+  }
+  .module-header:hover { color: var(--muted); }
+  .module-left { display: flex; align-items: center; gap: 24px; }
+  .module-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 300; color: var(--mid); min-width: 32px;
+  }
+  .module-title { font-size: 14px; font-weight: 500; }
+  .module-count { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+  .module-toggle {
+    width: 20px; height: 20px; position: relative; flex-shrink: 0;
+  }
+  .module-toggle::before, .module-toggle::after {
+    content: ''; position: absolute;
+    background: var(--ink); transition: transform 0.3s;
+  }
+  .module-toggle::before { width: 12px; height: 1px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .module-toggle::after { width: 1px; height: 12px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .module.open .module-toggle::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
+  .module-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .module.open .module-body { max-height: 400px; }
+  .module-lessons { padding: 0 0 20px 56px; list-style: none; }
+  .module-lessons li {
+    font-size: 13px; color: var(--muted); font-weight: 300;
+    padding: 7px 0; border-bottom: 1px solid var(--light);
+  }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--off); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px;
+  }
+  .testi {
+    background: var(--white); padding: 40px;
+    display: flex; flex-direction: column;
+  }
+  .testi-img {
+    width: 48px; height: 48px; border-radius: 50%; overflow: hidden;
+    margin-bottom: 20px; filter: grayscale(30%);
+  }
+  .testi-img img { width: 100%; height: 100%; object-fit: cover; }
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 300; font-style: italic;
+    line-height: 1.6; flex: 1; margin-bottom: 20px; color: #333;
+  }
+  .testi-name { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; }
+  .testi-loc { font-size: 11px; color: var(--muted); }
+
+  /* BONOS */
+  .bonos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+  .bono { background: var(--off); overflow: hidden; }
+  .bono-img { aspect-ratio: 16/9; overflow: hidden; }
+  .bono-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); transition: transform 0.5s; }
+  .bono:hover .bono-img img { transform: scale(1.03); }
+  .bono-body { padding: 28px; }
+  .bono-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .bono-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; margin-bottom: 8px; }
+  .bono-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .bono-value { font-size: 11px; color: var(--accent); margin-top: 12px; letter-spacing: 0.05em; }
+
+  /* PRICING */
+  .pricing { background: var(--ink); color: var(--white); }
+  .pricing-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .pricing .section-label { justify-content: center; color: #666; }
+  .pricing .section-label::before { background: #444; }
+  .pricing h2 { color: var(--white); margin-bottom: 40px; }
+  .price-box { margin: 40px 0; }
+  .price-old { font-size: 14px; color: #666; text-decoration: line-through; margin-bottom: 8px; }
+  .price-new {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px; font-weight: 300; line-height: 1; color: var(--white);
+  }
+  .price-currency { font-size: 28px; vertical-align: super; margin-right: 4px; }
+  .price-period { font-size: 13px; color: #666; margin-top: 8px; letter-spacing: 0.1em; }
+  .btn-primary-light {
+    display: inline-block; background: var(--white); color: var(--ink);
+    padding: 16px 48px; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: opacity 0.2s; margin-top: 32px;
+  }
+  .btn-primary-light:hover { opacity: 0.85; }
+  .pricing-notes { display: flex; justify-content: center; gap: 32px; margin-top: 28px; flex-wrap: wrap; }
+  .pricing-note { font-size: 11px; color: #666; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; }
+  .pricing-note::before { content: '✓'; color: #999; }
+
+  /* GUARANTEE */
+  .guarantee {
+    border: 1px solid var(--mid); padding: 48px; max-width: 680px;
+    margin: 64px auto 0; text-align: left;
+  }
+  .guarantee-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .guarantee h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .guarantee p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+  /* FAQ */
+  .faq-list { border-top: 1px solid var(--mid); margin-top: 48px; max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--mid); }
+  .faq-q {
+    padding: 22px 0; font-size: 14px; font-weight: 500; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--muted); }
+  .faq-q span { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--mid); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-a p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.7; padding-bottom: 22px; }
+
+  /* FINAL CTA */
+  .final-cta {
+    background: var(--off); border-top: 1px solid var(--mid);
+    text-align: center; padding: 100px 40px;
+  }
+  .final-cta h2 { margin-bottom: 20px; }
+  .final-cta p { font-size: 15px; color: var(--muted); max-width: 480px; margin: 0 auto 40px; font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: #666; padding: 32px 40px;
+    font-size: 12px; letter-spacing: 0.05em;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer span { color: #444; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-img { display: none; }
+    .pillars-inner { grid-template-columns: 1fr 1fr; }
+    .instructor-grid { grid-template-columns: 1fr; }
+    .instructor-img { max-height: 360px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .curriculum-header { grid-template-columns: 1fr; gap: 32px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .bonos-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr; }
+    nav { padding: 16px 24px; }
+    section { padding: 60px 24px; }
+    .pillars { padding: 40px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .pillars-inner { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 36px; }
+  }
+
+  /* FADE IN */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Academia Diana Ortiz</div>
+  <a href="#pricing" class="nav-cta">Acceder por $47</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding:0;">
+  <div class="hero">
+    <div class="hero-text fade-up">
+      <div class="hero-badge">Curso Online · Acceso inmediato</div>
+      <h1>El secreto de las manicuristas<br><em>rusas para cutículas perfectas.</em></h1>
+      <p class="hero-sub">En tu próxima práctica vas a notar la diferencia. Cutículas más limpias, más simétricas y sin miedo a lastimar — con el método de 4 pasos.</p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">Ver precio del curso</a>
+        <a href="#curriculum" class="btn-ghost">Ver contenido →</a>
+      </div>
+    </div>
+    <div class="hero-img fade-up" style="transition-delay:0.2s;">
+      <img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b7713ec81e_h4.webp" alt="Cutículas Perfectas">
+      <div class="hero-price-badge">
+        <div class="old">$147 USD</div>
+        <div class="new">$47</div>
+        <div class="note">pago único</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<div class="pillars">
+  <div class="pillars-inner">
+    <div class="pillar fade-up">
+      <div class="pillar-mark"></div>
+      <h3>Sin miedo a lastimar</h3>
+      <p>Aprende el ángulo y la presión exacta para nunca más causar sangrado.</p>
+    </div>
+    <div class="pillar fade-up" style="transition-delay:0.1s;">
+      <div class="pillar-mark"></div>
+      <h3>Resultados en cámara</h3>
+      <p>El acabado que hace que tus clientas te etiqueten en Instagram.</p>
+    </div>
+    <div class="pillar fade-up" style="transition-delay:0.2s;">
+      <div class="pillar-mark"></div>
+      <h3>4 pasos exactos</h3>
+      <p>Sin improvisar, sin dudar, sin repetir dos veces el mismo paso.</p>
+    </div>
+    <div class="pillar fade-up" style="transition-delay:0.3s;">
+      <div class="pillar-mark"></div>
+      <h3>Justifica tu precio</h3>
+      <p>Cuando tu acabado se ve premium, tus clientas lo pagan sin dudarlo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat fade-up">
+      <div class="stat-num">+650</div>
+      <div class="stat-label">Alumnas activas</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:0.1s;">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Pasos probados</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:0.2s;">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Acceso de por vida</div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTRUCTOR -->
+<section class="instructor">
+  <div class="container">
+    <div class="instructor-grid">
+      <div class="instructor-img fade-up">
+        <img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b54abe8e6f_diana.webp" alt="Diana Ortiz">
+      </div>
+      <div class="instructor-content fade-up" style="transition-delay:0.2s;">
+        <div class="section-label">Tu instructora</div>
+        <div class="instructor-name">Diana Ortiz</div>
+        <div class="instructor-tags">
+          <span class="tag">Nail Artist</span>
+          <span class="tag">Educadora</span>
+          <span class="tag">Técnica Premium</span>
+        </div>
+        <p class="instructor-bio">Especializada en técnicas avanzadas de manicura en Rusia, España y Ucrania — países reconocidos por su precisión y alto estándar en cutículas. Ha ayudado a cientos de alumnas a perfeccionar su técnica con un método práctico, claro y enfocado en resultados reales.</p>
+        <ul class="instructor-points">
+          <li>Experiencia real aplicada en clientas y alumnas</li>
+          <li>Método probado con alumnas de diferentes niveles</li>
+          <li>Explicación simple y paso a paso para aplicar rápido</li>
+          <li>Resultados visibles desde los primeros días de práctica</li>
+        </ul>
+        <blockquote class="instructor-quote" style="margin-top:28px;">
+          "Mi objetivo es que aprendas la técnica con seguridad y que tu trabajo se vea más limpio, más fino y más profesional."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section>
+  <div class="container">
+    <div class="section-label fade-up">El método</div>
+    <h2 class="fade-up">Así se logra una<br><em>cutícula perfecta.</em></h2>
+    <div class="steps-grid">
+      <div class="step fade-up">
+        <div class="step-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b41cb8d106_t1.webp" alt="Paso 1"></div>
+        <div class="step-body">
+          <div class="step-num">01</div>
+          <div class="step-title">Limpieza y levantamiento</div>
+          <div class="step-desc">Fresa flama con ángulo y presión exacta.</div>
+        </div>
+      </div>
+      <div class="step fade-up" style="transition-delay:0.1s;">
+        <div class="step-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b6f3730e69_pro1.webp" alt="Paso 2"></div>
+        <div class="step-body">
+          <div class="step-num">02</div>
+          <div class="step-title">Corte de cutícula</div>
+          <div class="step-desc">Alicate con técnica segura y precisa.</div>
+        </div>
+      </div>
+      <div class="step fade-up" style="transition-delay:0.2s;">
+        <div class="step-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/69962a066afe5_pulido.jpg" alt="Paso 3"></div>
+        <div class="step-body">
+          <div class="step-num">03</div>
+          <div class="step-title">Pulido con fresa esfera</div>
+          <div class="step-desc">Acabado suave y uniforme en toda la piel.</div>
+        </div>
+      </div>
+      <div class="step fade-up" style="transition-delay:0.3s;">
+        <div class="step-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/6997812f8fdf8_658da77e92bbc_5.webp" alt="Paso 4"></div>
+        <div class="step-body">
+          <div class="step-num">04</div>
+          <div class="step-title">Nivelación y esmaltado</div>
+          <div class="step-desc">Resultado final limpio, consistente y premium.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum" style="background:var(--off); border-top:1px solid var(--mid);">
+  <div class="container">
+    <div class="curriculum-header">
+      <div class="fade-up">
+        <div class="section-label">Contenido del curso</div>
+        <h2>Todo lo que<br><em>incluye el programa.</em></h2>
+      </div>
+      <div class="fade-up" style="transition-delay:0.1s;">
+        <p style="font-size:14px; color:var(--muted); font-weight:300; line-height:1.7;">7 módulos completos + bonos exclusivos. Acceso inmediato y de por vida. Certificado digital incluido al completar el curso.</p>
+      </div>
+    </div>
+    <div class="modules fade-up">
+      <div class="module open">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">01</span>
+            <div>
+              <div class="module-title">Fundamentos</div>
+              <div class="module-count">8 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>Bienvenida</li><li>Cómo manejar el curso</li><li>¿Qué es la Manicura Rusa?</li>
+            <li>Anatomía de la uña natural</li><li>Tipos de uña natural</li>
+            <li>Capas de la uña natural</li><li>Capas de la piel</li><li>Resumen del Módulo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">02</span>
+            <div>
+              <div class="module-title">Herramientas</div>
+              <div class="module-count">5 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>El alicate</li><li>La tijera</li><li>Las brocas</li>
+            <li>Máquinas Profesionales y Comerciales</li><li>Resumen del Módulo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">03</span>
+            <div>
+              <div class="module-title">Brocas y corte perfecto</div>
+              <div class="module-count">5 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>Revoluciones de las brocas</li><li>Niveles de abrasividad</li>
+            <li>Partes de la broca flama</li><li>Partes de la broca esfera</li><li>Cómo hacer un buen corte</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">04</span>
+            <div>
+              <div class="module-title">Esmaltes y geles</div>
+              <div class="module-count">9 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>Productos a utilizar</li><li>Nail Prep</li><li>Primer</li>
+            <li>La Base Coat</li><li>Base Rubber</li><li>Tonos de Rubber</li>
+            <li>Geles - Características</li><li>Top Coat</li><li>Resumen del Módulo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">05</span>
+            <div>
+              <div class="module-title">Retiro del producto</div>
+              <div class="module-count">3 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>Fresas para retiro</li><li>Pasos para el retiro</li><li>Resumen del Módulo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">06</span>
+            <div>
+              <div class="module-title">Limpieza profunda y cutículas perfectas</div>
+              <div class="module-count">11 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>Práctica en Globo</li><li>Práctica en Kiwi</li><li>Diagnóstico de la piel</li>
+            <li>Creación del bolsillo</li><li>Fresa flama — Limpieza, ángulos y tiempos</li>
+            <li>Cómo realizar el corte en la cutícula</li><li>Fresa esfera — Limpieza</li>
+            <li>Pulido de la piel</li><li>Preparación de la uña</li><li>Uso de los preparadores</li><li>Resumen del Módulo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-left">
+            <span class="module-num">07</span>
+            <div>
+              <div class="module-title">Aplicación y técnicas de decoración</div>
+              <div class="module-count">5 lecciones</div>
+            </div>
+          </div>
+          <div class="module-toggle"></div>
+        </div>
+        <div class="module-body">
+          <ul class="module-lessons">
+            <li>Nivelación en Rubber</li><li>Esmaltado Monocolor</li>
+            <li>Encapsulado en Gel</li><li>Baby Glitter</li><li>Difuminado en Gel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label fade-up">Estudiantes</div>
+    <h2 class="fade-up">Lo que dicen<br><em>nuestras alumnas.</em></h2>
+    <div class="testi-grid">
+      <div class="testi fade-up">
+        <div class="testi-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b6fdaa0860_ivian1.webp" alt="Ivian"></div>
+        <div class="testi-text">"Desde la primera clase vi el cambio en mi trabajo. Es súper claro y fácil de aplicar."</div>
+        <div class="testi-name">Ivian</div>
+        <div class="testi-loc">Perú</div>
+      </div>
+      <div class="testi fade-up" style="transition-delay:0.1s;">
+        <div class="testi-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/69a1b737748ec_Sandra1.webp" alt="Sandra"></div>
+        <div class="testi-text">"Antes me daba miedo cortar. Ahora hago cutículas más limpias y seguras."</div>
+        <div class="testi-name">Sandra</div>
+        <div class="testi-loc">Estados Unidos</div>
+      </div>
+      <div class="testi fade-up" style="transition-delay:0.2s;">
+        <div class="testi-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/69a1b686a6faa_lady1.webp" alt="Lady"></div>
+        <div class="testi-text">"Mis clientas notaron el cambio. Mi acabado se ve mucho más premium en fotos."</div>
+        <div class="testi-name">Lady</div>
+        <div class="testi-loc">México</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONOS -->
+<section>
+  <div class="container">
+    <div class="section-label fade-up">Bonos incluidos</div>
+    <h2 class="fade-up">Además recibes<br><em>estos bonos exclusivos.</em></h2>
+    <div class="bonos-grid">
+      <div class="bono fade-up">
+        <div class="bono-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b33019fdac_bono1.webp" alt="Bono 1"></div>
+        <div class="bono-body">
+          <div class="bono-tag">Bono 01</div>
+          <div class="bono-title">Alargamiento de la uña natural</div>
+          <div class="bono-desc">Una técnica extra para ofrecer un servicio más completo y ampliar tu catálogo.</div>
+          <div class="bono-value">Valor: $30 USD</div>
+        </div>
+      </div>
+      <div class="bono fade-up" style="transition-delay:0.1s;">
+        <div class="bono-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b35db307b6_bono2.webp" alt="Bono 2"></div>
+        <div class="bono-body">
+          <div class="bono-tag">Bono 02</div>
+          <div class="bono-title">Plan de contenido para redes sociales</div>
+          <div class="bono-desc">Un plan listo para Instagram y TikTok con ideas claras para atraer más clientas.</div>
+          <div class="bono-value">Valor: $20 USD</div>
+        </div>
+      </div>
+      <div class="bono fade-up" style="transition-delay:0.2s;">
+        <div class="bono-img"><img src="https://d1yei2z3i6k35z.cloudfront.net/2899949/699b3d5221ad0_bomo3.webp" alt="Bono 3"></div>
+        <div class="bono-body">
+          <div class="bono-tag">Bono 03</div>
+          <div class="bono-title">Revisión de tareas en comunidad privada</div>
+          <div class="bono-desc">Comparte tus prácticas y recibe orientación. Corriges más rápido y mejoras con seguridad.</div>
+          <div class="bono-value">Valor: $50 USD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="pricing-inner">
+    <div class="section-label fade-up">Inversión</div>
+    <h2 class="fade-up">Todo incluido.<br><em>Un solo pago.</em></h2>
+    <div class="price-box fade-up">
+      <div class="price-old">Valor total $147 USD</div>
+      <div class="price-new"><span class="price-currency">$</span>47</div>
+      <div class="price-period">USD · Pago único</div>
+    </div>
+    <a href="https://www.academiadianaortiz.com/cp_pagounico" class="btn-primary-light fade-up">Quiero el curso + bonos ahora</a>
+    <div class="pricing-notes fade-up">
+      <span class="pricing-note">Acceso inmediato</span>
+      <span class="pricing-note">De por vida</span>
+      <span class="pricing-note">Pago seguro</span>
+      <span class="pricing-note">Certificado digital</span>
+    </div>
+    <div class="guarantee fade-up" style="margin-top:60px; border-color:#333; color:var(--white);">
+      <div class="guarantee-label" style="color:#666;">Garantía</div>
+      <h3 style="color:var(--white);">7 días de garantía total</h3>
+      <p>Completa las prácticas de los módulos 1 al 6 y si sientes que tu técnica no mejoró, te devolvemos el 100% sin drama. Una garantía para quienes están dispuestas a practicar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-label fade-up">Preguntas frecuentes</div>
+    <h2 class="fade-up">Resuelve tus dudas<br><em>antes de comprar.</em></h2>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Necesito experiencia previa? <span>+</span></div>
+        <div class="faq-a"><p>No. El curso está diseñado para principiantes y también para quien ya hace uñas pero quiere perfeccionar su técnica.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo tengo acceso? <span>+</span></div>
+        <div class="faq-a"><p>Acceso de por vida. Puedes repetir las clases todas las veces que quieras, sin límite.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Cómo recibo el acceso? <span>+</span></div>
+        <div class="faq-a"><p>Después del pago recibirás un correo con tu acceso y podrás empezar de inmediato.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿El curso incluye certificado? <span>+</span></div>
+        <div class="faq-a"><p>Sí. Recibes certificado digital al completar el curso.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Puedo verlo desde el celular? <span>+</span></div>
+        <div class="faq-a"><p>Sí. Puedes acceder desde celular, tablet o computadora, desde donde estés.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Cómo funciona la garantía? <span>+</span></div>
+        <div class="faq-a"><p>Tienes 7 días con una condición: debes completar las prácticas de los módulos 1 al 6 y mostrar que las hiciste. Si tu técnica no mejoró, te devolvemos el 100% sin drama.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="section-label" style="justify-content:center;">El siguiente paso</div>
+  <h2 class="fade-up">Tu próxima clienta<br><em>va a notar la diferencia.</em></h2>
+  <p class="fade-up">El único paso que falta eres tú — decidir que tu técnica merece el siguiente nivel.</p>
+  <a href="https://www.academiadianaortiz.com/cp_pagounico" class="btn-primary fade-up">Sí, quiero acceder por $47</a>
+</div>
+
+<footer>
+  <span>© 2025 Academia Diana Ortiz</span>
+  <span>Pago seguro · Acceso inmediato · Garantía de 7 días</span>
+</footer>
+
+<script>
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Module accordion
+  function toggleModule(header) {
+    const module = header.closest('.module');
+    const isOpen = module.classList.contains('open');
+    document.querySelectorAll('.module').forEach(m => m.classList.remove('open'));
+    if (!isOpen) module.classList.add('open');
+  }
+
+  // FAQ accordion
+  function toggleFaq(q) {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) {
+      item.classList.add('open');
+      q.querySelector('span').textContent = '−';
+    }
+    document.querySelectorAll('.faq-item:not(.open) .faq-q span').forEach(s => s.textContent = '+');
+  }
+</script>
+</body>
+</html>
